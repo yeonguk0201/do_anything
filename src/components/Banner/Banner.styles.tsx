@@ -41,3 +41,5 @@ export const BannerContent2 = styled.div`
   color: white;
   animation: ${slide2} 15s 7.5s linear infinite;
 `;
+
+// 7.5s의 duration을 주어서 무한으로 순환하게 보이게 만들었다.
