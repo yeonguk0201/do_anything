@@ -1,11 +1,34 @@
 import { useState } from 'react';
+import axios from 'axios';
+import { useQuery } from '@tanstack/react-query';
 import { Container, BurgerBtn, Burger, HeaderLogo, ShoppingBtn, HeaderMenuBox, HeaderMenuBoxNav, NavUl, NavUlLi, SubMenu, SubLi } from './Header.styles';
+
+interface Category {
+  id: number;
+  name: string;
+}
+
+const fetchCategories = async (): Promise<Category[]> => {
+  const response = await axios.get('https://localhost:3001/api/categories');
+  return response.data;
+};
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const {
+    data: categories,
+    error,
+    isLoading,
+  } = useQuery<Category[]>({
+    queryKey: ['categories'],
+    queryFn: fetchCategories,
+  });
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
   };
+
+  if (isLoading) return <div>Loading...</div>;
+  if (error) return <div>Error loading Category</div>;
 
   return (
     <div>
@@ -22,12 +45,9 @@ const Header = () => {
       <HeaderMenuBox menuOpen={menuOpen}>
         <HeaderMenuBoxNav>
           <NavUl>
-            <NavUlLi>All</NavUlLi>
-            <NavUlLi>Coasters</NavUlLi>
-            <NavUlLi>Planters</NavUlLi>
-            <NavUlLi>Candles</NavUlLi>
-            <NavUlLi>Clocks</NavUlLi>
-            <NavUlLi>Jewelry</NavUlLi>
+            {categories?.map((category) => (
+              <NavUlLi key={category.id}>{category.name}</NavUlLi>
+            ))}
           </NavUl>
         </HeaderMenuBoxNav>
         <SubMenu>
