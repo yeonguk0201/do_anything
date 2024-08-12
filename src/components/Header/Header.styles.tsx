@@ -8,8 +8,12 @@ export const Container = styled.div`
   width: 100%;
   display: flex;
   align-items: center;
-  padding-top: 64px;
+  margin-top: 15px;
   justify-content: space-between;
+  position: fixed;
+  top: 23px;
+  z-index: 2;
+  background-color: red;
 `;
 
 export const BurgerBtn = styled.button`
@@ -71,8 +75,12 @@ export const ShoppingBtn = styled.button`
 
 export const HeaderMenuBox = styled.div<HeaderMenuBoxProps>`
   display: ${({ menuOpen }) => (menuOpen ? 'block' : 'none')};
+  position: absolute;
+  top: 0;
+  height: 100vh;
+  width: 100vw;
   background-color: #f4f4f4;
-  padding: 20px;
+  z-index: 1;
 `;
 
 export const HeaderMenuBoxNav = styled.nav`
