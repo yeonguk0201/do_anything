@@ -17,7 +17,7 @@ import { Container, BurgerBtn, Burger, HeaderLogo, ShoppingBtn, HeaderMenuBox, H
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [svgSize, setSvgSize] = useState({ width: 800, height: 300 });
-  const [topPosition, setTopPosition] = useState(23);
+  const [topPosition, setTopPosition] = useState(23); // 사이드 메뉴랑 svg사이즈, 배너가 살짝 움직이게 top 위치를 지정하는 state
   // const {
   //   data: categories,
   //   error,
@@ -34,6 +34,7 @@ const Header = () => {
   // if (error) return <div>Error loading Category</div>;
 
   useEffect(() => {
+    // 스크롤을 하면 svg 사이즈가 조절되는 기능. useEffect를 사용해서 변수를 바꾼다. return은
     const handleScroll = () => {
       const scrollPosition = window.scrollY;
       const maxScoll = document.documentElement.scrollHeight - window.innerHeight;
@@ -57,6 +58,7 @@ const Header = () => {
   }, []);
 
   let svgProps = {
+    // 초기 svg 설정, 아래 if문을 통해 값을 바꾸려고 따로 설정했다. 사이드 메뉴 open이 true면 저 변수를 사용한다.
     width: svgSize.width,
     height: svgSize.height,
     fill: 'black',
@@ -73,17 +75,22 @@ const Header = () => {
   return (
     <div>
       <Container style={{ top: `${topPosition}px` }}>
+        {' '}
+        {/*top을 변수로 받아서 바로바로 바꾸려고 여기다가 넣었다.*/}
         <BurgerBtn menuOpen={menuOpen} onClick={toggleMenu}>
+          {' '}
+          {/*menuOpen이라는 state를 받아서 던진다.*/}
           <Burger></Burger>
           <Burger></Burger>
           <Burger></Burger>
           <Burger></Burger>
         </BurgerBtn>
         <HeaderLogo href="#">
-          {' '}
           <LogoSvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 20" width={svgProps.width} height={svgProps.height} menuOpen={menuOpen}>
+            {/*svg도 이렇게 직접 만들 수 있다. width랑 height는 변수로 받고 menuOpen은 파라미터로 전달*/}
             <text x="0" y="15" font-family="Arial" font-size="15" fill={svgProps.fill}>
               <tspan x="23" dy="-7">
+                {/*x랑 y를 지정해서 위치를 다르게 함*/}
                 Design
               </tspan>
               <tspan x="32" dy="15">
@@ -93,6 +100,7 @@ const Header = () => {
           </LogoSvg>
         </HeaderLogo>
         <ShoppingBtn menuOpen={menuOpen}>
+          {/*여기도 파라미터 전달*/}
           <HiOutlineShoppingCart></HiOutlineShoppingCart>
         </ShoppingBtn>
       </Container>

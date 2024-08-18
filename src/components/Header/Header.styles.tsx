@@ -13,10 +13,11 @@ export const Container = styled.div`
   position: fixed;
   top: 23px;
   z-index: 2;
-  background-color: red;
+  background-color: red; // 지우기
 `;
 
 export const BurgerBtn = styled.button<HeaderMenuBoxProps>`
+  // Props를 제공 받아서 사용하려고
   display: flex;
   width: 40px;
   flex-direction: column;
@@ -27,27 +28,30 @@ export const BurgerBtn = styled.button<HeaderMenuBoxProps>`
   padding: 0;
   margin-left: 15px;
   border: 1px solid black;
+  overflow: hidden;
+  position: relative; // relative를 넣어야지 아래 div의 position이 BurgerBtn 기준으로 잡힘
 
   div {
+    // 이러면 내부 div 설정
     background-color: ${({ menuOpen }) => (menuOpen ? '#FBCCCC' : 'black')};
     position: absolute;
 
     &:nth-child(1) {
       width: ${({ menuOpen }) => (menuOpen ? '0px' : '39px')};
-      top: calc(50% -10px);
+      top: calc(50% - 10px);
       align-self: end;
     }
     &:nth-child(2) {
-      transform: ${({ menuOpen }) => (menuOpen ? 'translate(13%, 164%) rotate(45deg)' : '')};
-      top: calc(50% -4px);
+      transform: ${({ menuOpen }) => (menuOpen ? 'translate(0%, 149%) rotate(45deg)' : '')};
+      top: calc(50% - 5px);
     }
     &:nth-child(3) {
-      transform: ${({ menuOpen }) => (menuOpen ? 'translate(13%, -176%) rotate(-45deg)' : '')};
-      bottom: calc(50% -4px);
+      transform: ${({ menuOpen }) => (menuOpen ? 'translate(0%, -149%) rotate(-45deg)' : '')};
+      bottom: calc(50% - 2px);
     }
     &:nth-child(4) {
       width: ${({ menuOpen }) => (menuOpen ? '0px' : '30px')};
-      bottom: calc(50% -10px);
+      bottom: calc(50% - 7px);
     }
   }
 
@@ -118,5 +122,6 @@ export const SubLi = styled.li`
 `;
 
 export const LogoSvg = styled.svg<HeaderMenuBoxProps>`
+  // svg도 이렇게 할 수 있다.
   transition: width 0.3s ease, height 0.3s ease, fill 0.2s ease;
 `;
