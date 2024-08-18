@@ -20,6 +20,7 @@
     "git": "^0.1.5",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
+    "react-icons": "^5.3.0",
     "styled-components": "^6.1.11",
     "ts-node-dev": "^2.0.0"
   },

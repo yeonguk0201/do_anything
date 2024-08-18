@@ -7,7 +7,7 @@ interface HeaderMenuBoxProps {
 export const Container = styled.div`
   width: 100%;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   margin-top: 15px;
   justify-content: space-between;
   position: fixed;
@@ -38,32 +38,25 @@ export const BurgerBtn = styled.button`
   }
 `;
 
-export const Burger = styled.div`
+export const Burger = styled.div<HeaderMenuBoxProps>`
   width: 30px;
   height: 4px;
   background-color: black;
-  transition: all 0.3s ease;
-
-  // &:first-child:hover {
-  //   width: 25px;
-  // }
-
-  // &:last-child:hover {
-  //   width: 35px;
-  // }
+  transition: width 0.3s ease;
+  background-color: ${({ menuOpen }) => (menuOpen ? '#FBCCCC' : 'black')};
 `;
 
 export const HeaderLogo = styled.a`
-  margin-left: 20px;
-  font-size: 24px;
   font-weight: bold;
 `;
 
-export const ShoppingBtn = styled.button`
+export const ShoppingBtn = styled.button<HeaderMenuBoxProps>`
   display: flex;
   width: 40px;
+  font-size: 25px;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: center;
+  align-items: center;
   margin-right: 15px;
   height: 40px;
   cursor: pointer;
@@ -71,6 +64,7 @@ export const ShoppingBtn = styled.button`
   border: none;
   padding: 0;
   border: 1px solid black;
+  color: ${({ menuOpen }) => (menuOpen ? '#FBCCCC' : 'black')};
 `;
 
 export const HeaderMenuBox = styled.div<HeaderMenuBoxProps>`
@@ -104,4 +98,8 @@ export const SubMenu = styled.ul`
 export const SubLi = styled.li`
   padding: 10px 0;
   cursor: pointer;
+`;
+
+export const LogoSvg = styled.svg<HeaderMenuBoxProps>`
+  transition: width 0.3s ease, height 0.3s ease, fill 0.2s ease;
 `;
