@@ -73,11 +73,11 @@ const Header = () => {
   return (
     <div>
       <Container style={{ top: `${topPosition}px` }}>
-        <BurgerBtn onClick={toggleMenu}>
-          <Burger menuOpen={menuOpen}></Burger>
-          <Burger menuOpen={menuOpen}></Burger>
-          <Burger menuOpen={menuOpen}></Burger>
-          <Burger menuOpen={menuOpen}></Burger>
+        <BurgerBtn menuOpen={menuOpen} onClick={toggleMenu}>
+          <Burger></Burger>
+          <Burger></Burger>
+          <Burger></Burger>
+          <Burger></Burger>
         </BurgerBtn>
         <HeaderLogo href="#">
           {' '}

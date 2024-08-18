@@ -16,11 +16,10 @@ export const Container = styled.div`
   background-color: red;
 `;
 
-export const BurgerBtn = styled.button`
+export const BurgerBtn = styled.button<HeaderMenuBoxProps>`
   display: flex;
   width: 40px;
   flex-direction: column;
-  justify-content: space-evenly;
   height: 40px;
   cursor: pointer;
   background: none;
@@ -29,21 +28,39 @@ export const BurgerBtn = styled.button`
   margin-left: 15px;
   border: 1px solid black;
 
-  &:hover > div:first-child {
-    width: 25px;
+  div {
+    background-color: ${({ menuOpen }) => (menuOpen ? '#FBCCCC' : 'black')};
+    position: absolute;
+
+    &:nth-child(1) {
+      width: ${({ menuOpen }) => (menuOpen ? '0px' : '39px')};
+      top: calc(50% -10px);
+      align-self: end;
+    }
+    &:nth-child(2) {
+      transform: ${({ menuOpen }) => (menuOpen ? 'translate(13%, 164%) rotate(45deg)' : '')};
+      top: calc(50% -4px);
+    }
+    &:nth-child(3) {
+      transform: ${({ menuOpen }) => (menuOpen ? 'translate(13%, -176%) rotate(-45deg)' : '')};
+      bottom: calc(50% -4px);
+    }
+    &:nth-child(4) {
+      width: ${({ menuOpen }) => (menuOpen ? '0px' : '30px')};
+      bottom: calc(50% -10px);
+    }
   }
 
-  &:hover > div:last-child {
-    width: 35px;
+  &:hover > div:first-child {
+    width: ${({ menuOpen }) => (menuOpen ? '0px' : '30px')};
   }
 `;
 
-export const Burger = styled.div<HeaderMenuBoxProps>`
-  width: 30px;
-  height: 4px;
+export const Burger = styled.div`
+  width: 39px;
+  height: 2px;
   background-color: black;
-  transition: width 0.3s ease;
-  background-color: ${({ menuOpen }) => (menuOpen ? '#FBCCCC' : 'black')};
+  transition: width 0.3s ease, transform 0.3s ease;
 `;
 
 export const HeaderLogo = styled.a`
