@@ -57,6 +57,11 @@ const Header = () => {
     };
   }, []);
 
+  // menuOpen이면 스크롤을 막기위해 overflow를 hidden으로 바꿨다.
+  // useEffect(() => {
+  //   document.body.style.overflow = menuOpen ? 'hidden' : 'auto';
+  // }, [menuOpen]);
+
   let svgProps = {
     // 초기 svg 설정, 아래 if문을 통해 값을 바꾸려고 따로 설정했다. 사이드 메뉴 open이 true면 저 변수를 사용한다.
     width: svgSize.width,
@@ -88,7 +93,7 @@ const Header = () => {
         <HeaderLogo href="#">
           <LogoSvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 20" width={svgProps.width} height={svgProps.height} menuOpen={menuOpen}>
             {/*svg도 이렇게 직접 만들 수 있다. width랑 height는 변수로 받고 menuOpen은 파라미터로 전달*/}
-            <text x="0" y="15" font-family="Arial" font-size="15" fill={svgProps.fill}>
+            <text x="0" y="15" fontFamily="Arial" fontSize="15" fill={svgProps.fill}>
               <tspan x="23" dy="-7">
                 {/*x랑 y를 지정해서 위치를 다르게 함*/}
                 Design

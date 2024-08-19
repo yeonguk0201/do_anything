@@ -19,7 +19,6 @@ const slide2 = keyframes`
 
 export const Banner = styled.div`
   display: flex;
-  width: 100vw;
   height: 25px;
   background-color: black;
   overflow: hidden;
