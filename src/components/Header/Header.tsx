@@ -28,7 +28,7 @@ const Header = () => {
     // getBoundingClientRect는 요소의 크기와 위치를 담은 DomRect 객체를 반환한다. 여기서 해당 요소의 left나 width를 가져온거다.
     const mouseX = e.clientX - left; // e.clientX는 이벤트가 발생한 X좌표를 반환한다. 마우스 이벤트에서느 마우스의 X좌표를 알 수 있다.
     const percentage = mouseX / width - 0.5; // 0.5을 빼서 [-0.5, 0.5] 범위로 조정
-    const skewValue = percentage * -30; // +15deg에서 -15deg까지 스케일
+    const skewValue = percentage * -30; // +15deg에서 -15deg까지 스케일 조정
     setSkew(skewValue);
   };
   // const {
