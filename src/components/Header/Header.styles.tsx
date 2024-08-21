@@ -7,11 +7,9 @@ interface HeaderMenuBoxProps {
 const slideDown = keyframes`
   0% {
     transform: translateY(-100%);
-    opacity: 0;
   }
   100% {
-    transform: translateY(0);
-    opacity: 1;
+    transform: translateY(0%);
   }
 `;
 
@@ -109,6 +107,9 @@ export const ShoppingBtn = styled.button<HeaderMenuBoxProps>`
 export const HeaderMenuBox = styled.div<HeaderMenuBoxProps>`
   // 애니메이션 효과를 넣기위해 원래 display none에서 block으로 했는데 none이면 animation이 작동을 안해서 visibility를 변경했다. 그리고 transformY를 -100에서 부터 0으로 해서 내려오는 듯한 애니메이션을 만들었다.
   // 다시 수정해서 맨 위에 slideDown이라는 애니메이션을 만들고 keyframes를 사용했다. styled-component v4버전 부터는 keyframes를 직접 문자열에 삽입하지 않고 css 헬퍼를 사용해야 한다.
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   position: fixed;
   top: 0;
   height: 100%;
@@ -129,16 +130,39 @@ export const HeaderMenuBox = styled.div<HeaderMenuBoxProps>`
 `;
 
 export const HeaderMenuBoxNav = styled.nav`
-  margin-top: 20px;
+  margin-top: auto;
 `;
 
 export const NavUl = styled.ul`
   list-style-type: none;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
 `;
 
 export const NavUlLi = styled.li`
-  padding: 10px 0;
   cursor: pointer;
+  font-family: 'Playfair Display', serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+`;
+
+export const NavUlLiBox = styled.span`
+  &:nth-child(2),
+  &:nth-child(4),
+  &:nth-child(5) {
+    ::before {
+      content: '/';
+      display: inline-block;
+      margin-right: 0.2em;
+      margin-left: 0.2em;
+    }
+  }
+`;
+
+export const NavUlLiText = styled.a`
+  font-size: 60px;
 `;
 
 export const SubMenu = styled.ul`

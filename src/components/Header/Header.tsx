@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 // import axios from 'axios';
 // import { useQuery } from '@tanstack/react-query';
 import { HiOutlineShoppingCart } from 'react-icons/hi2';
-import { Container, BurgerBtn, Burger, HeaderLogo, ShoppingBtn, HeaderMenuBox, HeaderMenuBoxNav, NavUl, NavUlLi, SubMenu, SubLi, LogoSvg } from './Header.styles';
+import { Container, BurgerBtn, Burger, HeaderLogo, ShoppingBtn, HeaderMenuBox, HeaderMenuBoxNav, NavUl, NavUlLi, NavUlLiBox, NavUlLiText, SubMenu, SubLi, LogoSvg } from './Header.styles';
 
 // interface Category {
 //   id: number;
@@ -117,12 +117,36 @@ const Header = () => {
             ))}
           </NavUl> */}
           <NavUl>
-            <NavUlLi>All</NavUlLi>
-            <NavUlLi>Coasters</NavUlLi>
-            <NavUlLi>Planters</NavUlLi>
-            <NavUlLi>Candles</NavUlLi>
-            <NavUlLi>Clocks</NavUlLi>
-            <NavUlLi>Jewelry</NavUlLi>
+            <NavUlLi>
+              <NavUlLiBox>
+                <NavUlLiText>All</NavUlLiText>
+              </NavUlLiBox>
+            </NavUlLi>
+            <NavUlLi>
+              <NavUlLiBox>
+                <NavUlLiText>Coasters</NavUlLiText>
+              </NavUlLiBox>
+            </NavUlLi>
+            <NavUlLi>
+              <NavUlLiBox>
+                <NavUlLiText>Planters</NavUlLiText>
+              </NavUlLiBox>
+            </NavUlLi>
+            <NavUlLi>
+              <NavUlLiBox>
+                <NavUlLiText>Candles</NavUlLiText>
+              </NavUlLiBox>
+            </NavUlLi>
+            <NavUlLi>
+              <NavUlLiBox>
+                <NavUlLiText>Clocks</NavUlLiText>
+              </NavUlLiBox>
+            </NavUlLi>
+            <NavUlLi>
+              <NavUlLiBox>
+                <NavUlLiText>Jewelry</NavUlLiText>
+              </NavUlLiBox>
+            </NavUlLi>
           </NavUl>
         </HeaderMenuBoxNav>
         <SubMenu>
