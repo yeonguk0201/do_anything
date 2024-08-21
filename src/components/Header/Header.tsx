@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, MouseEvent } from 'react';
 // import axios from 'axios';
 // import { useQuery } from '@tanstack/react-query';
 import { HiOutlineShoppingCart } from 'react-icons/hi2';
@@ -18,6 +18,19 @@ const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [svgSize, setSvgSize] = useState({ width: 800, height: 300 });
   const [topPosition, setTopPosition] = useState(23); // 사이드 메뉴랑 svg사이즈, 배너가 살짝 움직이게 top 위치를 지정하는 state
+  const [skew, setSkew] = useState<number>(0);
+
+  const handleMouseMove = (e: MouseEvent<HTMLAnchorElement>) => {
+    // MouseEvent는 마우스와 관련된 이벤트를 나타내는 typescript의 타입이다. 이 타입은 마우스 이벤트(mousemove, click) 등을 설명하는데 사용된다. 또한 마우스의 위치나 버튼 클릭 상태, 클릭된 요소 등 여러가지 정보를 포함한다.
+    //HTMLAnchorElement는 a태그를 나타내는 typescript의 타입이다. a태그에 특화된 프로퍼티와 메서드를 제공한다.
+    // 따라서 MouseEvent 객체가 a 태그에서 발생한 마우스 이벤트임을 명시한 것이다.
+    const { left, width } = e.currentTarget.getBoundingClientRect(); // e.target과 다른 점은 target은 이벤트가 실제로 발생한 요소를 참조하고 currentTarget은 이벤트 리스너가 붙은 요소를 참조한다.
+    // getBoundingClientRect는 요소의 크기와 위치를 담은 DomRect 객체를 반환한다. 여기서 해당 요소의 left나 width를 가져온거다.
+    const mouseX = e.clientX - left; // e.clientX는 이벤트가 발생한 X좌표를 반환한다. 마우스 이벤트에서느 마우스의 X좌표를 알 수 있다.
+    const percentage = mouseX / width - 0.5; // 0.5을 빼서 [-0.5, 0.5] 범위로 조정
+    const skewValue = percentage * -30; // +15deg에서 -15deg까지 스케일
+    setSkew(skewValue);
+  };
   // const {
   //   data: categories,
   //   error,
@@ -117,34 +130,46 @@ const Header = () => {
             ))}
           </NavUl> */}
           <NavUl>
-            <NavUlLi>
+            <NavUlLi style={{ order: '1' }}>
               <NavUlLiBox>
-                <NavUlLiText>All</NavUlLiText>
+                <NavUlLiText onMouseMove={handleMouseMove} skew={skew}>
+                  All
+                </NavUlLiText>
               </NavUlLiBox>
             </NavUlLi>
-            <NavUlLi>
+            <NavUlLi style={{ order: '2' }}>
               <NavUlLiBox>
-                <NavUlLiText>Coasters</NavUlLiText>
+                <NavUlLiText onMouseMove={handleMouseMove} skew={skew}>
+                  Coasters
+                </NavUlLiText>
               </NavUlLiBox>
             </NavUlLi>
-            <NavUlLi>
+            <NavUlLi style={{ order: '4' }}>
               <NavUlLiBox>
-                <NavUlLiText>Planters</NavUlLiText>
+                <NavUlLiText onMouseMove={handleMouseMove} skew={skew}>
+                  Planters
+                </NavUlLiText>
               </NavUlLiBox>
             </NavUlLi>
-            <NavUlLi>
+            <NavUlLi style={{ order: '5' }}>
               <NavUlLiBox>
-                <NavUlLiText>Candles</NavUlLiText>
+                <NavUlLiText onMouseMove={handleMouseMove} skew={skew}>
+                  Candles
+                </NavUlLiText>
               </NavUlLiBox>
             </NavUlLi>
-            <NavUlLi>
+            <NavUlLi style={{ order: '6' }}>
               <NavUlLiBox>
-                <NavUlLiText>Clocks</NavUlLiText>
+                <NavUlLiText onMouseMove={handleMouseMove} skew={skew}>
+                  Clocks
+                </NavUlLiText>
               </NavUlLiBox>
             </NavUlLi>
-            <NavUlLi>
+            <NavUlLi style={{ order: '8' }}>
               <NavUlLiBox>
-                <NavUlLiText>Jewelry</NavUlLiText>
+                <NavUlLiText onMouseMove={handleMouseMove} skew={skew}>
+                  Jewelry
+                </NavUlLiText>
               </NavUlLiBox>
             </NavUlLi>
           </NavUl>

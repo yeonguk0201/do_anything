@@ -4,6 +4,10 @@ interface HeaderMenuBoxProps {
   menuOpen: boolean;
 }
 
+interface TextSkewProps {
+  skew: number;
+}
+
 const slideDown = keyframes`
   0% {
     transform: translateY(-100%);
@@ -49,7 +53,7 @@ export const BurgerBtn = styled.button<HeaderMenuBoxProps>`
 
   div {
     // 이러면 내부 div 설정
-    background-color: ${({ menuOpen }) => (menuOpen ? '#FBCCCC' : 'black')};
+    background-color: ${({ menuOpen }) => (menuOpen ? 'var(--main-font-color)' : 'black')};
     position: absolute;
 
     &:nth-child(1) {
@@ -101,7 +105,7 @@ export const ShoppingBtn = styled.button<HeaderMenuBoxProps>`
   background: none;
   border: none;
   padding: 0;
-  color: ${({ menuOpen }) => (menuOpen ? '#FBCCCC' : 'black')};
+  color: ${({ menuOpen }) => (menuOpen ? 'var(--main-font-color)' : 'black')};
 `;
 
 export const HeaderMenuBox = styled.div<HeaderMenuBoxProps>`
@@ -114,7 +118,7 @@ export const HeaderMenuBox = styled.div<HeaderMenuBoxProps>`
   top: 0;
   height: 100%;
   width: 100%;
-  background-color: #005d66;
+  background-color: var(--sub-menu-color);
   z-index: 1;
   visibility: ${({ menuOpen }) => (menuOpen ? 'visible' : 'visible')}; // 여기 수정해야 할듯
 
@@ -130,7 +134,9 @@ export const HeaderMenuBox = styled.div<HeaderMenuBoxProps>`
 `;
 
 export const HeaderMenuBoxNav = styled.nav`
+  color: var(--main-font-color);
   margin-top: auto;
+  padding-bottom: 50px;
 `;
 
 export const NavUl = styled.ul`
@@ -138,10 +144,39 @@ export const NavUl = styled.ul`
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
+
+  // '&'표시가 엄청 중요하다. & 없이도 작동을 하긴 하는데 &이게 현재 선택자를 가리키는 선택자라서 이거 없으면 nav 하위 애들한테도 before after가 막 들어간다. 그리고 order도 같은 block 안에 있어야지 작동한다.
+  &::before {
+    content: '';
+    order: 3;
+    display: block;
+    width: 100%;
+  }
+
+  &::after {
+    content: '';
+    order: 7;
+    display: block;
+    width: 100%;
+  }
+
+  // ul의 li 중 2,4,5 번째의 span에만 content '/'를 삽입했다.
+  > li {
+    &:nth-child(2),
+    &:nth-child(4),
+    &:nth-child(5) {
+      span {
+        &::before {
+          content: '/';
+          display: inline-block;
+          margin: 0 0.2em 0 0.2em;
+        }
+      }
+    }
+  }
 `;
 
 export const NavUlLi = styled.li`
-  cursor: pointer;
   font-family: 'Playfair Display', serif;
   font-optical-sizing: auto;
   font-weight: 400;
@@ -149,30 +184,36 @@ export const NavUlLi = styled.li`
 `;
 
 export const NavUlLiBox = styled.span`
-  &:nth-child(2),
-  &:nth-child(4),
-  &:nth-child(5) {
-    ::before {
-      content: '/';
-      display: inline-block;
-      margin-right: 0.2em;
-      margin-left: 0.2em;
-    }
-  }
+  font-size: 60px;
 `;
 
-export const NavUlLiText = styled.a`
-  font-size: 60px;
+export const NavUlLiText = styled.a<TextSkewProps>`
+  cursor: pointer;
+  display: inline-block;
+  // inline 요소엔 2D, 3D 변형이 제대로 적용되지 않을 수 있기 때문에 inline-block을 설정했다.
+  transition: all 0.2s ease;
+
+  &:hover {
+    transform: ${({ skew }) => `skew(${skew}deg)`};
+  }
 `;
 
 export const SubMenu = styled.ul`
   list-style-type: none;
-  margin-top: 20px;
+  color: var(--main-font-color);
+  margin-bottom: 90px;
+  font-size: 13px;
+  font-weight: bolder;
 `;
 
 export const SubLi = styled.li`
-  padding: 10px 0;
   cursor: pointer;
+  transition: all 0.5s ease;
+
+  &:hover {
+    opacity: 0.7;
+    transform: skew(-10deg);
+  }
 `;
 
 export const LogoSvg = styled.svg<HeaderMenuBoxProps>`
