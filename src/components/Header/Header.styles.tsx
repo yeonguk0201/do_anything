@@ -8,6 +8,31 @@ interface TextSkewProps {
   skew: number;
 }
 
+interface NavUlLiProps extends HeaderMenuBoxProps {
+  delay: number;
+}
+
+const textSlideDown = keyframes`
+  0% {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+`;
+
+const subSlideDown = keyframes`
+  0% {
+    opacity: 0;
+    transform: translateY(-50%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0%);
+  }
+`;
 const slideDown = keyframes`
   0% {
     transform: translateY(-100%);
@@ -176,11 +201,19 @@ export const NavUl = styled.ul`
   }
 `;
 
-export const NavUlLi = styled.li`
-  font-family: 'Playfair Display', serif;
+export const NavUlLi = styled.li<NavUlLiProps>`
+  font-family: 'Cormorant', system-ui;
   font-optical-sizing: auto;
   font-weight: 400;
   font-style: normal;
+  opacity: 0;
+
+  ${({ menuOpen, delay }) =>
+    menuOpen &&
+    css`
+      animation: ${textSlideDown} 0.5s ease-out forwards;
+      animation-delay: ${delay}s;
+    `}
 `;
 
 export const NavUlLiBox = styled.span`
@@ -192,18 +225,29 @@ export const NavUlLiText = styled.a<TextSkewProps>`
   display: inline-block;
   // inline 요소엔 2D, 3D 변형이 제대로 적용되지 않을 수 있기 때문에 inline-block을 설정했다.
   transition: all 0.2s ease;
+  letter-spacing: -3px;
 
   &:hover {
     transform: ${({ skew }) => `skew(${skew}deg)`};
   }
 `;
 
-export const SubMenu = styled.ul`
+export const SubMenu = styled.ul<NavUlLiProps>`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   list-style-type: none;
   color: var(--main-font-color);
   margin-bottom: 90px;
   font-size: 13px;
-  font-weight: bolder;
+  opacity: 0;
+
+  ${({ menuOpen, delay }) =>
+    menuOpen &&
+    css`
+      animation: ${subSlideDown} 0.5s ease-out forwards;
+      animation-delay: ${delay}s;
+    `}
 `;
 
 export const SubLi = styled.li`

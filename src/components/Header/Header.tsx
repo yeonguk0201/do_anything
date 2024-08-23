@@ -130,42 +130,42 @@ const Header = () => {
             ))}
           </NavUl> */}
           <NavUl>
-            <NavUlLi style={{ order: '1' }}>
+            <NavUlLi delay={0.6} menuOpen={menuOpen} style={{ order: '1' }}>
               <NavUlLiBox>
                 <NavUlLiText onMouseMove={handleMouseMove} skew={skew}>
                   All
                 </NavUlLiText>
               </NavUlLiBox>
             </NavUlLi>
-            <NavUlLi style={{ order: '2' }}>
+            <NavUlLi delay={0.65} menuOpen={menuOpen} style={{ order: '2' }}>
               <NavUlLiBox>
                 <NavUlLiText onMouseMove={handleMouseMove} skew={skew}>
                   Coasters
                 </NavUlLiText>
               </NavUlLiBox>
             </NavUlLi>
-            <NavUlLi style={{ order: '4' }}>
+            <NavUlLi delay={0.7} menuOpen={menuOpen} style={{ order: '4' }}>
               <NavUlLiBox>
                 <NavUlLiText onMouseMove={handleMouseMove} skew={skew}>
                   Planters
                 </NavUlLiText>
               </NavUlLiBox>
             </NavUlLi>
-            <NavUlLi style={{ order: '5' }}>
+            <NavUlLi delay={0.75} menuOpen={menuOpen} style={{ order: '5' }}>
               <NavUlLiBox>
                 <NavUlLiText onMouseMove={handleMouseMove} skew={skew}>
                   Candles
                 </NavUlLiText>
               </NavUlLiBox>
             </NavUlLi>
-            <NavUlLi style={{ order: '6' }}>
+            <NavUlLi delay={0.8} menuOpen={menuOpen} style={{ order: '6' }}>
               <NavUlLiBox>
                 <NavUlLiText onMouseMove={handleMouseMove} skew={skew}>
                   Clocks
                 </NavUlLiText>
               </NavUlLiBox>
             </NavUlLi>
-            <NavUlLi style={{ order: '8' }}>
+            <NavUlLi delay={0.85} menuOpen={menuOpen} style={{ order: '8' }}>
               <NavUlLiBox>
                 <NavUlLiText onMouseMove={handleMouseMove} skew={skew}>
                   Jewelry
@@ -174,7 +174,7 @@ const Header = () => {
             </NavUlLi>
           </NavUl>
         </HeaderMenuBoxNav>
-        <SubMenu>
+        <SubMenu delay={0.5} menuOpen={menuOpen}>
           <SubLi>About</SubLi>
           <SubLi>Facebook</SubLi>
           <SubLi>Instagram</SubLi>
