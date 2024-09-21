@@ -24,7 +24,7 @@ export const ItemContainer = styled.article`
   display: flex;
   height: 100%;
   position: relative;
-  width: 1180px; // 이거 사이즈에 맞게 calc 써서 수정
+  width: 1430px; // 이거 사이즈에 맞게 calc 써서 수정
   // background-color: yellow;
 `;
 
@@ -44,7 +44,7 @@ export const ItemContent = styled.div`
 `;
 
 export const ItemImgContainer = styled.div`
-  width: 800px; // 이거 사이즈에 맞게 calc 써서 수정
+  width: 1050px; // 이거 사이즈에 맞게 calc 써서 수정
   height: 100%;
   position: relative;
   // background-color: black;

@@ -5,12 +5,12 @@ import './styles.css';
 
 function App() {
   return (
-    <>
+    <div className="base">
       <TopBanner></TopBanner>
       <Header></Header>
       <MainPageProductSlider></MainPageProductSlider>
       <div style={{ height: '2000px' }}></div>
-    </>
+    </div>
   );
 }
 
