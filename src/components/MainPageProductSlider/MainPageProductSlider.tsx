@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react';
 import {
   Container,
   SliderWrapper,
@@ -18,9 +19,34 @@ import {
 } from './MainPageProductSlider.styles';
 
 const MainPageProductSlider = () => {
+  const [transformX, setTransformX] = useState(0);
+
+  const handleScroll = () => {
+    const currentScrollY = window.scrollY;
+    const maxTransformX = -250; // 슬라이드가 이동할 최대 거리 (-250vw)
+
+    //가로 슬라이드 위치 계산
+    const newTransformX = (-1 / 9) * currentScrollY + 880 / 18;
+
+    if (newTransformX < maxTransformX) {
+      setTransformX(maxTransformX);
+    } else if (newTransformX < 0) {
+      setTransformX(newTransformX);
+    } else {
+      setTransformX(0);
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
   return (
     <Container>
-      <SliderWrapper>
+      <SliderWrapper style={{ transform: `translateX(${transformX}vw)` }}>
         <SliderInner>
           <ItemContainer>
             <ItemContent>
@@ -63,7 +89,7 @@ const MainPageProductSlider = () => {
               <ItemImgFigure>
                 <ItemImgBtn></ItemImgBtn>
                 <ItemInnerImgBox>
-                  <Img></Img>
+                  <Img src="../../sample.png"></Img>
                 </ItemInnerImgBox>
               </ItemImgFigure>
             </ItemImgContainer>
@@ -83,7 +109,7 @@ const MainPageProductSlider = () => {
               <ItemImgFigure>
                 <ItemImgBtn></ItemImgBtn>
                 <ItemInnerImgBox>
-                  <Img></Img>
+                  <Img src="../../sample.png"></Img>
                 </ItemInnerImgBox>
               </ItemImgFigure>
             </ItemImgContainer>
@@ -103,7 +129,7 @@ const MainPageProductSlider = () => {
               <ItemImgFigure>
                 <ItemImgBtn></ItemImgBtn>
                 <ItemInnerImgBox>
-                  <Img></Img>
+                  <Img src="../../sample.png"></Img>
                 </ItemInnerImgBox>
               </ItemImgFigure>
             </ItemImgContainer>

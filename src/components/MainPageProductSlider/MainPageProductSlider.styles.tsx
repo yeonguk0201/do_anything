@@ -4,13 +4,18 @@ export const Container = styled.section`
   position: relative;
   padding: 120px 80px 0 80px;
   margin-top: 370px;
-  // background-color: red;
+  height: 340vh;
+  contain: paint;
 `;
 
 export const SliderWrapper = styled.div`
   padding: 120px 0 0 80px;
   overflow: hidden;
-  // background-color: white;
+  width: 12000px;
+  height: 100vh;
+  position: sticky;
+  top: 0;
+  left: 0;
 `;
 
 export const SliderInner = styled.div`

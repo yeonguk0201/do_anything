@@ -52,7 +52,7 @@ const Header = () => {
       const scrollPosition = window.scrollY;
       const maxScoll = document.documentElement.scrollHeight - window.innerHeight;
 
-      const scale = Math.max(0.2, 1 - (scrollPosition / maxScoll) * 5.5);
+      const scale = Math.max(0.2, 1 - (scrollPosition / maxScoll) * 8);
 
       setSvgSize({
         width: 800 * scale,
