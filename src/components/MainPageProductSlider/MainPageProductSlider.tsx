@@ -46,7 +46,7 @@ const MainPageProductSlider = () => {
 
   return (
     <Container>
-      <SliderWrapper style={{ transform: `translateX(${transformX}vw)` }}>
+      <SliderWrapper style={{ transform: `translateX(${transformX}vw)`, transition: 'transform 0.5s cubic-bezier(.4,.92,1,.94)' }}>
         <SliderInner>
           <ItemContainer>
             <ItemContent>
